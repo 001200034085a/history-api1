@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
         require:true,
         default:true
     }
+    
 
 });
 

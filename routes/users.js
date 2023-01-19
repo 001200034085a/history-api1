@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const User = require("../models/userModel");
+
 const { 
-  registerUser, loginUser , getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById,
+  registerUser, loginUser , getUserProfile, getAllUser, updateUserProfile, deleteUserById, getUserById, putUserById, ForgotPassword, ResetPassword, GetResetPassword
 } = require("../controller/userControler");
 const { protect, isAdmin } = require('../midleware/authMidleware');
 
@@ -50,5 +52,15 @@ router.get("/:id", protect, isAdmin, getUserById);
 // @route: put /api/users/:id
 // @access: Private/admin
 router.put("/:id",putUserById);
+
+// 9.
+router.post("/forgot-password", ForgotPassword);
+
+// 10.
+router.post("/reset-password/:id/:token",ResetPassword);
+
+// 11.
+router.get("/reset-password/:id/:token", GetResetPassword )
+
 
 module.exports = router;
